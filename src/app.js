@@ -1,0 +1,26 @@
+const dotenv = require("dotenv").config()
+const express = require("express")
+const connectDB = require("./config/db")
+const CookieParser = require("cookie-parser")
+const app = express();
+app.use(CookieParser());
+connectDB();
+app.use(express.json());
+
+
+/**
+ * - Routes required
+*/
+const authRoute = require("./routes/auth.route");
+const accountRoute = require("./routes/account.route")
+
+
+
+/**
+ * - User Routes 
+*/
+app.use("/api/auth", authRoute)
+app.use("/api/account", accountRoute)
+
+
+module.exports = app;
