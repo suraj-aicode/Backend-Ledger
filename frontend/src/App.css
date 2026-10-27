@@ -1,0 +1,124 @@
+/* Fluxpay - Black & White Layouts & Dashboards */
+
+.dashboard-hero {
+  padding: 2.5rem 0 2rem;
+}
+
+/* Stat Grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: var(--transition);
+}
+
+.stat-card:hover {
+  border-color: var(--border-bright);
+  background: var(--surface-card-hover);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: #1e1e1e;
+  border: 1px solid var(--border-medium);
+  color: #ffffff;
+}
+
+/* Accounts Grid */
+.accounts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.new-account-card {
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-medium);
+  background: #111111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.5rem;
+  cursor: pointer;
+  transition: var(--transition);
+  text-align: center;
+  min-height: 220px;
+}
+
+.new-account-card:hover {
+  border-color: #ffffff;
+  background: #171717;
+  transform: translateY(-2px);
+}
+
+/* Landing Page Hero */
+.landing-hero {
+  text-align: center;
+  padding: 5rem 1rem 4rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.landing-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 3.5rem 0;
+}
+
+.feature-box {
+  padding: 1.75rem;
+  text-align: left;
+  background: #121212;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.feature-box:hover {
+  border-color: var(--border-bright);
+  background: #171717;
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  background: #1c1c1c;
+  border: 1px solid var(--border-medium);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .dashboard-hero {
+    padding: 1.5rem 0 1rem;
+  }
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+  .accounts-grid {
+    grid-template-columns: 1fr;
+  }
+}
