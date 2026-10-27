@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const accountModel = require("../models/account.model");
+const ledgerModel = require("../models/ledger.model");
 
 async function createAccountController(req, res) { 
     const user = req.user;
@@ -45,6 +46,28 @@ async function getAccountBalanceController(req, res) {
     })
 }
 
+async function getAccountLedgerController(req, res) { 
+    const accountId = req.params.accountId;
+    const account = await accountModel.findOne({ _id: accountId, user: req.user._id });
+
+    if (!account) {
+        return res.status(404).json({
+            message: "Account not found",
+            status: "Error"
+        })
+    }
+
+    const ledgers = await ledgerModel.find({ account: accountId })
+        .populate("transaction")
+        .sort({ _id: -1 });
+
+    return res.status(200).json({
+        message: "Account ledger fetched successfully",
+        status: "Success",
+        ledgers
+    })
+}
+
 module.exports = {
-    createAccountController, getUserAccountsController, getAccountBalanceController
+    createAccountController, getUserAccountsController, getAccountBalanceController, getAccountLedgerController
 }

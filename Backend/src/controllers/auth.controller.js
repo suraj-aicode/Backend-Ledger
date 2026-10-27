@@ -102,4 +102,17 @@ async function userLogoutController(req, res) {
     message: "User Logged Out Successfully",
   });
 }
-module.exports = { userRegisterController, userLoginController, userLogoutController };
+
+async function userMeController(req, res) {
+  return res.status(200).json({
+    status: "Success",
+    user: {
+      id: req.user._id,
+      name: req.user.name,
+      email: req.user.email,
+      systemUser: !!req.user.systemUser
+    }
+  });
+}
+
+module.exports = { userRegisterController, userLoginController, userLogoutController, userMeController };
