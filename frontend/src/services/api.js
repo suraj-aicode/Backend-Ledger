@@ -1,4 +1,18 @@
-const API_BASE = import.meta.env.VITE_API_URL || '/api';
+function getApiBase() {
+  const envUrl = (import.meta.env.VITE_API_URL || '').trim();
+  if (!envUrl) {
+    return '/api';
+  }
+  // Strip trailing slashes
+  let clean = envUrl.replace(/\/+$/, '');
+  // Automatically ensure /api is suffixed
+  if (!clean.endsWith('/api')) {
+    clean += '/api';
+  }
+  return clean;
+}
+
+const API_BASE = getApiBase();
 
 function getAuthToken() {
   return localStorage.getItem('token') || '';
@@ -38,6 +52,13 @@ async function request(endpoint, options = {}) {
     }
     return data;
   } catch (error) {
+    if (error.name === 'TypeError' && (error.message || '').includes('fetch')) {
+      const helpfulError = new Error(
+        `Unable to reach backend at ${API_BASE}. ` +
+        `If using Render free tier, the backend may be waking up from sleep (takes ~45s), or please check your Netlify VITE_API_URL setting.`
+      );
+      throw helpfulError;
+    }
     throw error;
   }
 }
