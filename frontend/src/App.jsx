@@ -7,6 +7,7 @@ import SystemMintModal from './components/SystemMintModal';
 import DepositModal from './components/DepositModal';
 import LedgerModal from './components/LedgerModal';
 import TransactionsTable from './components/TransactionsTable';
+import Footer from './components/Footer';
 import Toast from './components/Toast';
 import { api, setAuthToken } from './services/api';
 import './App.css';
@@ -540,6 +541,9 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {/* Persistent Architectural Footer */}
+      <Footer />
 
       {/* Modals */}
       <AuthModal
